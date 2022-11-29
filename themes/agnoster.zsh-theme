@@ -89,7 +89,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black magenta "%(!.%{%F{yellow}%}.)%n@%m"
+    prompt_segment black 13 "%(!.%{%F{yellow}%}.)%n@%m" # 13 is bright magenta; the 13th color in prefs
   fi
 }
 
