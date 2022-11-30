@@ -7,8 +7,16 @@ if [ -n "$SSH_CLIENT" ]; then
   local host_color="green"
 fi
 
+virtualenv_prompt() {
+	if [ ! -z ${CONDA_DEFAULT_ENV} ]; then
+		echo "%{$fg_bold[black]%}[%{$fg[cyan]%}${CONDA_DEFAULT_ENV}%{$fg_bold[black]%}] "
+	fi
+	echo ""
+}
+
+
 PROMPT='
-%{$fg_bold[black]%}[%{$reset_color%}%{$fg_bold[${host_color}]%}%n@%m%{$reset_color%}%{$fg_bold[black]%}]%{$reset_color%} %{$fg_bold[black]%}[%{$fg_bold[blue]%}%10c%{$reset_color%}%{$fg_bold[black]%}] $(git_prompt_info) $(git_remote_status)
+$(virtualenv_prompt)%{$fg_bold[black]%}[%{$reset_color%}%{$fg_bold[${host_color}]%}%n@%m%{$reset_color%}%{$fg_bold[black]%}]%{$reset_color%} %{$fg_bold[black]%}[%{$fg_bold[blue]%}%10c%{$reset_color%}%{$fg_bold[black]%}] $(git_prompt_info) $(git_remote_status)
 %{$reset_color%}%{$fg_bold[red]%}❯❯%{$reset_color%} '
 
 
